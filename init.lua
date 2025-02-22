@@ -250,6 +250,16 @@ require('lazy').setup({
     opts = {},
   },
 
+  {
+    'nvim-flutter/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim',
+    },
+    config = true,
+  },
+
   -- MY PLUGINS END
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
