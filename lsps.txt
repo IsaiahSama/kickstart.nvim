@@ -1,0 +1,15 @@
+# LSP List from Mason
+
+- autopep8
+- clang-format
+- eslint-lsp
+- glow
+- json-lsp
+- lua-language-server
+- marksman
+- mypy
+- pyright
+- python-lsp-server
+- ruff
+- stylua
+- typescript-language-server
