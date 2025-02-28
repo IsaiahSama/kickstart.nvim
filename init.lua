@@ -189,6 +189,16 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- My Keymaps
+
+vim.keymap.set('n', '<leader>e', function()
+  if vim.wo.relativenumber == true then
+    vim.wo.relativenumber = false
+  else
+    vim.wo.relativenumber = true
+  end
+end, { desc = 'Attempt to toggle relative numbers' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
