@@ -212,6 +212,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+-- Setting HTMLDJANGO filetype
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'htmldjango',
+  callback = function()
+    vim.bo.filetype = 'html'
+  end,
+})
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -243,9 +251,14 @@ require('lazy').setup({
   -- MY PLUGINS
 
   {
+    'ray-x/lsp_signature.nvim',
+  },
+  {
     'mattn/emmet-vim',
   },
-  'andweeb/presence.nvim',
+  {
+    'andweeb/presence.nvim',
+  },
   {
     'ms-jpq/chadtree',
     config = function()
@@ -533,6 +546,7 @@ require('lazy').setup({
         auto_start = true,
       }
     end,
+
     config = function()
       -- Brief aside: **What is LSP?**
       --
@@ -651,6 +665,14 @@ require('lazy').setup({
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
+
+          -- Custom Configurations
+
+          require('lsp_signature').on_attach({
+            bind = true,
+            hint_enable = true,
+            floating_window = true,
+          }, event.buf)
         end,
       })
 
