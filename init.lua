@@ -284,7 +284,6 @@ require('lazy').setup({
     ---@type render.md.UserConfig
     opts = {},
   },
-
   {
     'nvim-flutter/flutter-tools.nvim',
     lazy = false,
@@ -293,6 +292,9 @@ require('lazy').setup({
       'stevearc/dressing.nvim',
     },
     config = true,
+  },
+  {
+    'tpope/vim-obsession',
   },
 
   {
