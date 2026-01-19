@@ -233,7 +233,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = '*.hbs',
   callback = function()
-    vim.cmd '!djlint %'
+    vim.cmd '!djlint --reformat %'
   end,
   desc = 'Auto format handlebars files with djlint after saving',
 })
