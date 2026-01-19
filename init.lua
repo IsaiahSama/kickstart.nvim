@@ -230,6 +230,14 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.hbs',
+  callback = function()
+    vim.cmd '!djlint %'
+  end,
+  desc = 'Auto format handlebars files with djlint after saving',
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
