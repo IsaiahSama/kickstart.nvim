@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -154,7 +154,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -212,7 +212,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
--- Setting HTMLDJANGO filetype
+
+-- Setting Custom Autocommands
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'htmldjango',
@@ -308,18 +309,6 @@ require('lazy').setup({
   {
     'numToStr/Comment.nvim',
     opts = {},
-  },
-
-  {
-    'github/copilot.vim',
-    event = 'VeryLazy',
-    config = function()
-      vim.keymap.set('i', '<C-F>', 'copilot#Accept("<CR>")', {
-        expr = true,
-        replace_keycodes = false,
-      })
-      vim.g.copilot_no_tab_map = true
-    end,
   },
 
   -- MY PLUGINS END
@@ -715,14 +704,14 @@ require('lazy').setup({
       })
 
       -- Change diagnostic symbols in the sign column (gutter)
-      -- if vim.g.have_nerd_font then
-      --   local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-      --   local diagnostic_signs = {}
-      --   for type, icon in pairs(signs) do
-      --     diagnostic_signs[vim.diagnostic.severity[type]] = icon
-      --   end
-      --   vim.diagnostic.config { signs = { text = diagnostic_signs } }
-      -- end
+      if vim.g.have_nerd_font then
+        local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+        local diagnostic_signs = {}
+        for type, icon in pairs(signs) do
+          diagnostic_signs[vim.diagnostic.severity[type]] = icon
+        end
+        vim.diagnostic.config { signs = { text = diagnostic_signs } }
+      end
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -1058,12 +1047,12 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
